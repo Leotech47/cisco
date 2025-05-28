@@ -106,3 +106,82 @@ copy running-config startup-config
 
 > Esse comando salva a configuração atual (em RAM) na NVRAM, garantindo que seja mantida após o reinício do equipamento.
 
+### ✅ **Parte 2: Configurar os PCs**
+
+---
+
+### 🔹 **Etapa 1: Configurar IPs em PC1 e PC2**
+
+**Para PC1:**
+
+1. Clique em **PC1**.
+2. Vá na aba **Desktop**.
+3. Clique em **IP Configuration**.
+4. Insira:
+
+   * **IP Address**: `192.168.1.1`
+   * **Subnet Mask**: `255.255.255.0`
+
+**Para PC2:**
+
+1. Clique em **PC2**.
+2. Vá na aba **Desktop**.
+3. Clique em **IP Configuration**.
+4. Insira:
+
+   * **IP Address**: `192.168.1.2`
+   * **Subnet Mask**: `255.255.255.0`
+
+---
+
+### 🔹 **Etapa 2: Testar a conectividade com o switch S1**
+
+1. No **PC1**, clique na aba **Desktop > Command Prompt**.
+2. Digite:
+
+```bash
+ping 192.168.1.253
+```
+
+---
+
+### ❓ **Pergunta: Deu certo? Explique.**
+
+**Resposta:**
+
+**Depende.** O comando `ping 192.168.1.253` só funcionará se **S1 tiver um endereço IP configurado na VLAN 1 (ou na VLAN correta)** com o IP `192.168.1.253`.
+
+---
+
+### 🔍 **Verificação no switch S1:**
+
+Você precisa ter executado este comando no S1 anteriormente:
+
+```bash
+S1(config)# interface vlan 1
+S1(config-if)# ip address 192.168.1.253 255.255.255.0
+S1(config-if)# no shutdown
+```
+
+E S1 deve estar **conectado via cabo ao PC1** em portas ativas.
+
+---
+
+### ✅ **Se tudo estiver correto:**
+
+* O ping funcionará e mostrará:
+
+```
+Reply from 192.168.1.253: bytes=32 time<1ms TTL=255
+```
+
+### ❌ **Se não funcionar:**
+
+* Você verá:
+
+```
+Request timed out.
+```
+
+---
+
