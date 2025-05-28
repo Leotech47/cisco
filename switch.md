@@ -93,3 +93,16 @@ Ao final, você deve ver no `show running-config`:
 
 ---
 
+### ✅ **Etapa 4: Salvar o arquivo de configuração na NVRAM**
+
+**Pergunta:**
+**Qual comando você emite para executar esta etapa?**
+
+**Resposta objetiva:**
+
+```bash
+copy running-config startup-config
+```
+
+> Esse comando salva a configuração atual (em RAM) na NVRAM, garantindo que seja mantida após o reinício do equipamento.
+
